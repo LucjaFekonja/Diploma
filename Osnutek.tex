@@ -1,0 +1,273 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\author{Lucija Fekonja \\ Mentor: doc. dr. Uroš Kuzman}
+\title{Minimalne ploskve in Björlingov problem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+\newtheorem{definicija}{Definicija}
+\newtheorem{lema}{Lema}
+\newtheorem{dokaz}{Dokaz}
+\newtheorem{trditev}{Trditev}
+\newtheorem{izrek}{Izrek}
+
+
+% Še neke ostale stvari ...
+
+
+\begin{document}
+
+    \maketitle
+
+    \section{Definicija minimalne ploskve}
+
+    Minimalno ploskev lahko definiramo na osem različnih, a med sabo ekvavilentnih načinov.
+    Lokalno definicijo minimalne ploskve lahko zapišemo na sledeč način.
+    
+    \begin{definicija}
+        Ploskev $M \subset \mathbb{R}^3$ je \emph{minimalna ploskev}, če in samo če obstaja okolica vsake točke $p \in M$, omejena s 
+        sklenjeno krivuljo, ki ima najmanjšo površino med vsemi ploskvami z isto omejitvijo.
+    \end{definicija}
+    
+    
+    Intuitivno je minimalna ploskev takšna ploskev, ki ima najmanjšo površino pri nekih robnih pogojih. 
+    Pogosteje jih definiramo z uporabo srednje ukrivljenosti, saj jih na ta način podamo globalno.
+    Zavoljo te definicije spoznajmo nekaj osnovnih pojmov vezanih na ploskve v splošnem.
+
+    \begin{definicija}
+        \emph{Enotsko normalo $N$} regularne ploskve s parametrizacijo $\phi(u, v)$ definiramo kot vektor $N = \frac{\phi_u \times \phi_v}{\left\lvert \phi_u \times \phi_v \right\rvert }$.
+    \end{definicija}
+
+    \begin{definicija}
+        \emph{Normalna ukrivljenost $\kappa_n$} je komponenta ukrivljenosti $\kappa$ ploskovne krivulje $\gamma$ v smeri normale
+        $$ \kappa_n = \frac{dT}{dS} \cdot N. $$
+    \end{definicija}
+
+    \begin{definicija}
+        Naj bo $p$ točka na ploskvi. Poglejmo vse krivulje $\gamma_i$ na ploskvi, ki gredo skozi točko $p$. Naj bo $\kappa_1$ maksimalna izmed normalnih ukrivljenosti
+        teh krivulj v točki $p$, $\kappa_2$ pa minimalna. 
+        \emph{Srednja ukrivljenost H} je definirana kot $H = \frac{ \kappa_1 + \kappa_2 }{2}$.
+    \end{definicija}
+    
+    Sedaj lahko globalno definiramo minimalno ploskev.
+    
+    \begin{definicija}
+        Ploskev se imenuje \emph{minimalna ploskev}, če je njena srednja ukrivljenost enaka nič.
+    \end{definicija}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+    \section{Prva in druga fundamentalna forma}
+
+    Prva in druga fundamentalna forma sta operatorja, s katerima lahko med drugim tudi
+    izrazimo definicijo srednje ukrivljenosti in iz tega dobimo še eno ekvavilentno definicijo
+    minimalne ploskve. Zagotavljata nam preprost kriterij za ugotavljanje minimalnosti ploskve.
+
+    \begin{definicija}
+        \emph{Prva fundamentalna forma $I(u, v)$} za $u, v \in T_p S$ je simetrični operator $$I(u, v) = u \cdot v$$
+    \end{definicija}
+
+    Kvadratna forma prve fundamentalne forme je $I(v) = I(v, v) = v \cdot v = \left\lvert v \right\rvert^2$ 
+
+    Označili bomo:
+    \begin{align*}
+        E &= I(\phi_u) = \phi_u \cdot \phi_u = \left\lvert \phi_u \right\rvert^2 \\
+        F &= I(\phi_u, \phi_v) = \phi_u \cdot \phi_v \\
+        G &= I(\phi_v) = \phi_v \cdot \phi_v = \left\lvert \phi_v \right\rvert^2
+    \end{align*}
+
+    Koeficienti $E, F \text{ in } G$ se imenujejo \emph{koeficienti prve fundamentalne forme $I$}.
+
+    \begin{definicija}
+        \emph{Weingartenova preslikava $\Omega_p: T_p S \to T_p S$} je sebi-adjungirana linearna preslikava s predpisom
+        $$ \Omega_p (v_1 \phi_u (p) + v_2 \phi_v (p)) = - v_1 N_u (p) - v_2 N_v (p), $$
+        kjer je $\phi : D \to S$ parametrizacija ploskve, $p \in D$ in $N$ enotski normalni vektor.
+    \end{definicija}
+
+    Sebi-adjungirano pomeni: $$ \forall u, v \in T_p S. \quad \Omega_p (u) \cdot v = u \cdot \Omega_p (v) $$.
+
+    \begin{definicija}
+        \emph{Druga fundamentalna forma $II(u, v)$} za $u, v \in T_p S$ je simetrični operator $$II(u, v) = \Omega_p(u) \cdot v$$
+    \end{definicija}
+
+    Koeficiente druge fundamentalne forme lahko izračunamo kot:
+    \begin{align*}
+        l &= \phi_{uu} \cdot N \\
+        m &= \phi_{uv} \cdot N \\
+        n &= \phi_{vv} \cdot N \\
+    \end{align*}
+
+    Srednjo ukrivljenosti lahko sedaj podamo še nekoliko drugače:
+    $$ H = \frac{En + Gl - 2Fm}{2(EG - F^2)}, $$
+    kjer so $E, F, G, l, m \text{ in } n$ koeficienti prve oziroma druge fundamentalne forme.
+
+    To nam zagotavlja nov kriterij preverjanja ali je ploskev minimalna. Na minimalni ploskvi mora namreč veljati 
+    \begin{equation} \label{eq:1}
+        En + Gl - 2Fm = 0
+    \end{equation}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Enačba minimalne ploskve}
+
+    Nekatere ploskve lahko podamo kot graf funkcije v dveh spremenljivkah.
+    Parametrizacija take ploskve je $X (u, v) = (u, v, f (u, v))$.
+
+    Vektorja hitrosti sta
+    $$ X_u = (1, 0, f_u) \qquad \qquad X_v = (0, 1, f_v)  $$ 
+
+    Drugi odvodi pa so
+    $$
+        X_{uu} = (0, 0, f_{uu}) \qquad \qquad
+        X_{uv} = (0, 0, f_{uv}) \qquad \qquad
+        X_{vv} = (0, 0, f_{vv})
+    $$
+
+    Iz tega lahko dobimo enotsko normalo $N = \frac{(- f_u, - f_v, 1)}{\sqrt{1 + f_u^2 + f_v^2}}$.
+
+    Izvedeti želimo pri kakšnih pogojih je definirana ploskev minimalna, zato izračunamo koeficiente prve in druge fundamentalne forme.
+
+    $$ E = 1 + f_u^2 \qquad 
+    F = f_u \cdot f_v \qquad 
+    G = 1 + f_v^2 $$
+
+    $$ l = \frac{f_{uu}}{\sqrt{1 + f_u^2 + f_v^2}} \qquad 
+    m = \frac{f_{uv}}{\sqrt{1 + f_u^2 + f_v^2}} \qquad
+    n = \frac{f_{vv}}{\sqrt{1 + f_u^2 + f_v^2}} $$
+
+    Iz enačbe \ref{eq:1} izračunamo srednjo ukrivljenost. 
+    \begin{align*}
+        H &= E n + G l - 2 F m \\
+        &= \frac{ (1 + f_v^2) f_{uu} - 2 f_u f_v f_{uv} + (1 + f_u^2) f_{vv} }{ 2 (1 + f_u^2 + f_v^2)^{\frac{3}{2}} }
+    \end{align*} 
+
+    Vemo, da je ploskev minimalna natanko takrat, ko je njena srednja ukrivljenjost ničelna. Iz tega sledi naslednja 
+    trditev.
+
+    \begin{trditev}
+        Ploskev $M$ podana kot graf funkcije $z = f(x, y)$ je minimalna natanko tedaj, ko je
+        $$ (1 + f_v^2) f_{uu} - 2 f_u f_v f_{uv} + (1 + f_u^2) f_{vv} = 0 $$
+    \end{trditev}
+
+    Enačbo iz trditve imenujemo enačba minimalne ploskve. V splošnem ni rešljiva, z dodatnimi robnimi pogoji, pa jo lahko rešimo in
+    s tem dobimo različne primere minimalnih ploskev.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Izotermne koordinate}
+    \begin{definicija}
+        Parametrizacija $\phi$ je \emph{izotermna}, če je $E = \phi_u \cdot \phi_u = \phi_v \cdot \phi_v = G$ in $F = \phi_u \cdot \phi_v = 0$.
+    \end{definicija}
+
+    Če je $\phi$ izotermna parametrizacija ploskve, je srednja ukrivljenost $H = \frac{n + l}{2E}$. Zato je ploskev z izotermno parametrizacijo
+    minimalna že, če je $n + l = 0$.
+
+    \begin{izrek}
+        Za vsako minimalno ploskev obstaja minimalna parametrizacija.
+    \end{izrek}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Björlingov problem}
+    
+    Da lahko problem navedemo, moramo poznati definicijo realno analitične funkcije.
+
+    \begin{definicija}
+        Funkcija $f(x)$ realne spremenljivke $x$ je \emph{realno analitična} v točki $a\in\mathbb{R}$, 
+        če obstaja $R>0$, da lahko na intervalu $(a-R,a+R)$ funkcijo $f$ predstavimo s konvergentno potenčno vrsto.
+    \end{definicija}
+    
+    Pravimo, da je $f$ realno analitična na $I\subseteq \mathbb{R}$, če je realno analitična v vsaki točki $a\in I$. 
+    Podobno definiramo tudi realno analitično vektorsko polje na $I$. V tem primeru morajo biti vse komponente polja 
+    realno analitične na $I$. 
+    
+    Recimo sedaj, da je $\alpha (t) : I \mapsto \mathbb{R}^3$ realno analitična krivulja in $\eta : I \mapsto \mathbb{R}^3$ 
+    realno analitično vektorsko polje, za katerega velja $ \left\lvert \eta \right\rvert = 1$ in $\eta (t) \cdot \alpha' (t) = 0$ 
+    za vse točke $t$ iz intervala $I$. 
+
+    Zanimalo nas bo, ali obstaja minimalna ploskev, ki vsebuje krivuljo $\alpha$, njen normalni vektor pa se vzdolž nje 
+    ujema s poljem $\eta$. Iskanju tovrstne ploskve pravimo Björlingov problem. Povedano drugače, iščemo parametrizacijo 
+    $\phi (u, v)$ minimalne ploskve $M$, za katero velja:
+    \begin{enumerate}
+        \item Ploskev $M$ naj vsebuje krivuljo $\alpha$ pri $v = 0$. Tj. $\forall u \in I. \alpha (u) = \phi (u, 0)$.
+        \item Normale na ploskev $M$ se naj vzdolž celotne krivulje $\alpha$ ujemajo z vektorji vektorskega polja $\eta$ 
+        Tj. $\forall u \in I. \eta (u) = N(u, 0)$.
+    \end{enumerate}
+
+    Ker sta $\alpha(t)$ in $\eta(t)$ realno analitični funkciji, sta njuni holomorfni razširitvi $\alpha(z)$ 
+    in $\eta(z)$ kompleksni holomorfni funkcji na $D \mapsto \mathbb{C}^3$, kjer je $I \subseteq D \subseteq \mathbb{C}$.
+    Izkaže se, da je rešitev Björlingovega problema ena sama in jo lahko zapišemo eksplicitno:
+    $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+
+
+    Da lahko dokažemo, da je navedena formula res rešitev problema, je potrebno poznati naslednji trditvi.
+
+    \begin{izrek}{(Princip identičnosti)}
+        Če sta $f$ in $g$ holomorfni funkciji na povezanem območju $D \subset \mathbb{C}$, potem je $f = g$ na celotnem $D$.
+    \end{izrek}
+
+    \begin{lema}
+        $\phi$ ima izotermne koordinate natanko tedaj, ko velja $(\phi')^2 = 0$.
+    \end{lema}
+
+    \begin{dokaz}
+        Naj bo $\phi$ izotermna. Potem je 
+        $$(\phi')^2 = \frac{1}{4} (E - G - 2iF)^2 =  \frac{1}{4} (E - E - 2i \cdot 0)^2 = 0.$$
+        Sedaj naj velja $(\phi')^2 = 0$. Potem je $$\frac{1}{4} (E - G - 2iF)^2 = 0 + i \cdot 0.$$ Sledi $E = G$ in $F = 0$. 
+    \end{dokaz}        
+
+
+
+    Za dokaz rešitve Björlingovega problema najprej predpostavimo, da izotermna parametrizacija obstaja in jo označimo 
+    s $\phi$. Nato definiramo holomorfno funkcijo
+    \begin{align*}
+        & \beta (z) : D \mapsto \mathbb{C}^3 \\
+        & \beta (z) = \phi (z) + i \varphi (z) = \left[
+        \begin{matrix}
+            \phi^{1} \\
+            \phi^{2} \\
+            \phi^{3} \\
+        \end{matrix} \right]
+        + i \left[
+        \begin{matrix}
+            \varphi^{1} \\
+            \varphi^{2} \\
+            \varphi^{3} \\
+        \end{matrix} \right],
+    \end{align*}
+    kjer je $\varphi^{j}$ harmonična konjungiranka $\phi^{j}$ oziroma funkcija, za katero je $\phi^{i} + i \varphi^{i}$ holomorfna.
+
+    Z uporabo holomorfnosti, izotermnosti in pogojev Björlingovega problema, torej $\phi(u, 0) = \alpha(u)$ in 
+    $N(u, 0) = \mathcal{N}$ dobimo
+    $$\beta(u) = \alpha(u) - i \cdot \int_{u_0}^{u} \mathcal{N} (t) \times \alpha'(t) dt.$$
+
+    Nato z izrekom identitete pokažemo, da za vsak $z \in D$ velja 
+    $$\beta(z) = \alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw.$$
+
+    Realni del funkcije $\beta$ je ravno parametrizacija $\phi = Re(\phi + i \cdot \varphi)$. Torej je 
+    $$ \phi(u, v) = Re(\beta(z)) = Re(\alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw),$$
+    kar je rešitev problema.
+
+    Tako dokažemo, da če $\phi$ parametrizira ploskev in zadošča pogojem problema, potem je ravno takšne oblike kot je 
+    navedeno v rešitvi. To pomeni, da je rešitev enolična.
+
+    Za dokaz obstoja rešitve predpostavimo, da je $\beta$ holomorfna funkcija oblike
+    $$\beta(z) = \alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw.$$
+
+    $\beta$ skrčimo na $u \in I$ in kvadriramo njen odvod. Ugotovimo, da je $\beta'(u)^2 = 0$.
+    Po principu identičnosti je tudi $\beta'(z)^2 = 0$ za $\forall z \in D$.
+    To pa je pogoj za obstoj izotermnih koordinat ploskve.
+
+    Torej realni del funkcije $\beta$ parametrizira minimalno ploskev $M$ v izotermnih koordinatah.
+    Tako smo dokazali obstoj izotermne parametrizacije ploskve, ki reši Björlingov problem.
+
+
+\end{document}

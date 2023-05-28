@@ -1,0 +1,142 @@
+\documentclass{beamer}
+
+\usepackage[slovene]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multicol}
+
+\usetheme{Boadilla}
+
+\def\qed{$\hfill\Box$}   % konec dokaza
+\newtheorem{izrek}{Izrek}
+\newtheorem{trditev}{Trditev}
+\newtheorem{posledica}{Posledica}
+\newtheorem{lema}{Lema}
+\newtheorem{definicija}{Definicija}
+\newcommand{\R}{\mathbb R}
+
+\title{Minimalne ploskve in Björlingov problem}
+\author{Lucija Fekonja \\
+Mentor: Doc. dr. Uroš Kuzman}
+\institute{Fakulteta za matematiko in fiziko \\
+Oddelek za matematiko}
+\date{30. maj 2023}
+
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Minimalna ploskev}
+        \begin{definicija}
+            Ploskev $M \subset \mathbb{R}^3$ je \emph{minimalna ploskev}, če in samo če obstaja okolica vsake točke $p \in M$, omejena s 
+            sklenjeno krivuljo, ki ima najmanjšo površino med vsemi ploskvami z isto omejitvijo.
+        \end{definicija}
+
+        \pause
+
+        \begin{definicija}
+            Ploskev se imenuje \emph{minimalna ploskev}, če je njena srednja ukrivljenost enaka nič.
+        \end{definicija}
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Catalanova minimalna ploskev}
+        $$\phi (u, v) = \left( 1 - cos (u) cosh (v), 4 sin(u/2) sinh(v/2), u - sin (u) cosh (v) \right)$$
+
+        \begin{figure}[h]
+            \includegraphics[height = 4cm]{Catalanova-minimalna-ploskev.eps}
+            \caption{Catalanova minimalna ploskev}
+        \end{figure}
+    \end{frame}
+    
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Björlingov problem}
+        Naj velja:
+        \begin{align*}
+            \alpha &: I \mapsto \R^3 \text{realno analitična krivulja} \\
+            \eta &: I \mapsto \R^3 \text{realno analitično vektorsko polje} \\
+            \left\lvert \eta (t) \right\rvert &= 1 \\
+            \eta (t) \cdot \alpha' (t) &= 0
+        \end{align*}
+
+        Najdi parametrizacijo minimalne ploskve $\phi (u, v)$, za katero velja:
+        \begin{enumerate}
+            \item Ploskev naj vsebuje krivuljo $\alpha$ pri $v = 0$. To pomeni, $\forall u \in I. \alpha (u) = \phi (u, 0)$.
+            \item Normale na ploskev se naj vzdolž celotne krivulje $\alpha$ ujemajo z vektorji vektorskega polja $\eta$: 
+            $\forall u \in I. \eta (u) = N(u, 0)$.
+        \end{enumerate}
+    \end{frame}
+
+% ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Rešitev Björlingovega problema}
+        $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Princip identičnosti}
+        \begin{izrek}
+            Naj bosta $f$ in $g$ holomorfni funkciji na povezanem odprtem območju $D \subseteq \mathbb{C}$ (ali $\mathbb{R}$).
+            Če ima $S \subseteq D$ stekališče, potem je $f = g$ na $D$.
+        \end{izrek}
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Izotermna parametrizacija}
+        \pause
+        \begin{lema}
+            $\phi$ ima izotermne koordinate natanko tedaj, ko velja $(\phi')^2 = 0$.
+        \end{lema}
+
+        \pause
+        \begin{lema}
+            Ploskev $M$ z izotermno parametrizacijo $\phi = \left( \phi^1, \phi^2, \phi^3 \right)$
+            je minimalna natanko tedaj, ko so $\phi^1, \phi^2$ in $\phi^3$ harmonične.
+        \end{lema}
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Dokaz rešitve Björlingovega problema}
+        $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+    \end{frame}
+        
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Konstrukcija minimalne ploskve}
+        Krivulja: $\alpha (u) = \left( \beta (u), 0, \gamma (u) \right)$
+
+        Normale: $N = \frac{ \left( - \gamma', 0, \beta' \right) }{ \sqrt{(\beta')^2 + (\gamma')^2 }} $
+
+        Izračunamo vektorski produkt $N \times \alpha' = \left( 0, \sqrt{(\beta')^2 + (\gamma')^2}, 0 \right)$
+
+        Rešitev problema je torej:
+        $$ Re \left( \alpha - i \int N \times \alpha' \right) = \left( Re \beta, Im \int \sqrt{(\beta')^2 + (\gamma')^2}, Re \gamma \right)$$
+    \end{frame}
+
+    % ------------------------------------------------------------------------------------------------------------------------
+
+    \begin{frame}{Catalanova minimalna ploskev}
+        $$\phi (u, v) = \left( 1 - cos (u) cosh (v), 4 sin(u/2) sinh(v/2), u - sin (u) cosh (v) \right)$$
+
+        \begin{figure}[h]
+            \includegraphics[height = 4cm]{Catalanova-minimalna-ploskev.eps}
+            \caption{Catalanova minimalna ploskev}
+        \end{figure}
+    \end{frame}
+    
+
+\end{document}

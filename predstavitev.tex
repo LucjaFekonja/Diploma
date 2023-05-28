@@ -1,0 +1,206 @@
+\documentclass{beamer}
+
+\usepackage[slovene]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multicol}
+
+\usetheme{Warsaw}
+
+\def\qed{$\hfill\Box$}   % konec dokaza
+\newtheorem{izrek}{Izrek}
+\newtheorem{trditev}{Trditev}
+\newtheorem{posledica}{Posledica}
+\newtheorem{lema}{Lema}
+\newtheorem{definicija}{Definicija}
+\newcommand{\R}{\mathbb R}
+
+\title{Minimalne ploskve in Björlingov problem}
+\author{Lucija Fekonja \\
+Mentor: Doc. dr. Uroš Kuzman}
+\institute{Fakulteta za matematiko in fiziko \\
+Oddelek za matematiko}
+\date{19. december 2022}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \begin{definicija}
+        \emph{Enotsko normalo $N$} regularne ploskve s parametrizacijo $\phi(u, v)$ definiramo kot vektor $N = \frac{\phi_u \times \phi_v}{\left\lvert \phi_u \times \phi_v \right\rvert }$.
+    \end{definicija}
+    
+    \begin{definicija}
+        \emph{Binormala $B$} v točki $p \in S$ je vektor $B = N \times T$, kjer je $N$ enotska normala in $T$ izbrani tangentni vektor iz $T_p S$.
+    \end{definicija}
+\end{frame}
+    
+\begin{frame}
+    \begin{definicija}
+        \emph{Normalna ukrivljenost $\kappa_n$} je komponenta ukrivljenosti $\kappa$ ploskovne krivulje $\gamma$ v smeri normale.
+        $$ \kappa_n = \frac{dT}{ds} \cdot N. $$
+    \end{definicija}
+    
+    \begin{definicija}
+        \emph{Geodetska ukrivljenost $\kappa_g$} je komponenta ukrivljenosti $\kappa$ ploskovne krivulje $\gamma$ v smeri stranske normale.
+        $$ \kappa_g = \frac{dT}{ds} \cdot B. $$
+    \end{definicija}    
+\end{frame}
+
+\begin{frame}
+    \begin{definicija}
+            Naj bo $p$ točka na ploskvi. Poglejmo vse krivulje $\gamma_i$ na ploskvi, ki gredo skozi točko $p$. Naj bo $\kappa_1$ maksimalna izmed normalnih ukrivljenosti
+            teh krivulj v točki $p$, $\kappa_2$ pa minimalna. 
+        \emph{Srednja ukrivljenost H} je definirana kot $H = \frac{ \kappa_1 + \kappa_2 }{2}$.
+    \end{definicija}
+
+    \begin{definicija}
+        Ploskev se imenuje \emph{minimalna ploskev}, če je njena srednja ukrivljenost enaka nič.
+    \end{definicija}    
+\end{frame}
+
+% SPUSTIM KER JE PREVEČ DETAJLOV
+%\begin{frame}
+%    \begin{definicija}
+%        \emph{Prva fundamentalna forma $I(u, v)$} za $u, v \in T_p S$ je simetrični operator $$I(u, v) = u \cdot v$$
+%    \end{definicija}
+%
+%    \tiny
+%    \begin{align*}
+%        1 &= \gamma' \cdot \gamma' \\
+%        &= (u' \phi_u + v' \phi_v) \cdot (u' \phi_u + v' \phi_v)\\
+%        &= (\phi_u \cdot \phi_u) u'^2 + (\phi_u \cdot \phi_v + \phi_v \cdot \phi_u) u' v' + (\phi_v \cdot \phi_v) v'^2  \\
+%        &= I(\phi_u) u'^2 + 2 I(\phi_u, \phi_v) u' v' + I(\phi_v) v'^2\\
+%        &= E u'^2 + 2F u' v' + G v'^2\\
+%    \end{align*}
+%    
+%    \normalsize
+%    Označili smo:
+%    \begin{align*}
+%        E &= I(\phi_u) = \phi_u \cdot \phi_u = \left\lvert \phi_u \right\rvert^2 \\
+%        F &= I(\phi_u, \phi_v) = \phi_u \cdot \phi_v \\
+%        G &= I(\phi_v) = \phi_v \cdot \phi_v = \left\lvert \phi_v \right\rvert^2
+%    \end{align*}
+%\end{frame}
+%
+%\begin{frame}
+%    \begin{definicija}
+%        \emph{Weingartenova preslikava $\Omega_p: T_p S \to T_p S$} je sebi-adjungirana linearna preslikava s predpisom
+%        $$ \Omega_p (v_1 \phi_u (p) + v_2 \phi_v (p)) = - v_1 N_u (p) - v_2 N_v (p) $$,
+%        kjer je $\phi : D \to S$ parametrizacija ploskve, $p \in D$ in $N$ enotski normalni vektor.
+%    \end{definicija}
+%
+%    \begin{definicija}
+%        \emph{Druga fundamentalna forma $II(u, v)$} za $u, v \in T_p S$ je simetrični operator $$II(u, v) = \Omega_p(u) \cdot v$$
+%    \end{definicija}
+%
+%    \begin{align*}
+%        l &= \phi_{uu} \cdot N \\
+%        m &= \phi_{uv} \cdot N \\
+%        n &= \phi_{vv} \cdot N \\
+%    \end{align*}
+%\end{frame}
+%
+%\begin{frame}
+%    $$ H = \frac{En + Gl - 2Fm}{2(EG - F^2)} $$
+%    
+%    \begin{trditev}
+%        Ploskev $M$ je minimalna natanko tedaj, ko velja $En + Gl - 2Fm = 0$, kjer so
+%        $E, F, G, l, m, n$ ustrezni koeficienti prve in druge fundamentalne forme.
+%    \end{trditev}
+%\end{frame} 
+
+\begin{frame}{Od kod prihaja ime minimalna ploskev?}
+    \begin{definicija}
+        Ploskev $M \subset \R$ je \emph{minimalna ploskev} natanko tedaj, ko ima vsaka točka $p \in M$ 
+        okolico, za katero ima $M$ najmanjšo ploščino med vsemi z enakim robom.
+    \end{definicija}
+
+    \begin{itemize}
+        \item Definicija je lokalna.
+        \item Definicija je povezana z milnimi filmi.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Katenoida}
+    \begin{multicols}{2}
+
+    \begin{figure}[h]
+        \includegraphics[height = 4cm]{veriznica.eps}
+        \caption{Verižnica za $a \in \left\{ 0.5, 0.6, 0.7, 0.8, 0.9, 1\right\}$ }
+    \end{figure}
+
+    \columnbreak
+
+    \begin{figure}[h]
+        \includegraphics[height = 4cm]{katenoida.eps}
+        \caption{Katenoida}
+    \end{figure}
+
+\end{multicols}
+\end{frame}
+
+% Katenoida je edina rotacijska minimalna ploskev.
+
+\begin{frame}{Helikoid}
+    \begin{figure}[h]
+        \includegraphics[height = 5cm]{helikoid.eps}
+        \caption{Helikoid}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Scherkova prva in druga ploskev}
+    \begin{multicols}{2}
+
+        \begin{figure}[h]
+            \includegraphics[height = 4cm]{scherk1.eps}
+            \caption{Del prve Scherkove ploskve}
+        \end{figure}
+        
+        \columnbreak
+
+        \begin{figure}[h]
+            \includegraphics[height = 4cm]{scherk2.eps}
+            \caption{Del druge Scherkove ploskve}
+        \end{figure}
+
+    \end{multicols}
+\end{frame}
+
+
+\begin{frame}{Björlingov problem}
+    \begin{definicija}
+        Funkcija $f(x)$ realne spremenljivke $x$ je \emph{realno analitična}, če je $f(z)$ 
+        holomorfna za kompleksno spremenljivko $z$.
+    \end{definicija}
+
+    Naj velja:
+    \begin{align*}
+        \alpha (t) &: I \mapsto \R^3 \text{realno analitična krivulja} \\
+        \eta &: I \mapsto \R^3 \text{realno analitično vektorsko polje} \\
+        \left\lvert \eta \right\rvert &= 1 \\
+        \eta (t) \cdot \alpha' (t) &= 0
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Björlingov problem}
+    Najdi parametrizacijo minimalne ploskve $\phi (u, v)$, za katero velja:
+    \begin{enumerate}
+        \item Ploskev $M$ naj vsebuje krivuljo $\alpha$ pri $v = 0$. To pomeni, $\forall u \in I. \alpha (u) = \phi (u, 0)$.
+        \item Normale na ploskev $M$ se naj vzdolž celotne krivulje $\alpha$ ujemajo z vektorji vektorskega polja $\eta$: 
+        $\forall u \in I. \eta (u) = N(u, 0)$.
+    \end{enumerate}
+
+    Rešitev:
+    $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+\end{frame}
+    
+\end{document}

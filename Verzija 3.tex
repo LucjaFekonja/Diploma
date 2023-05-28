@@ -1,0 +1,411 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\author{Lucija Fekonja \\ Mentor: doc. dr. Uroš Kuzman}
+\title{Minimalne ploskve in Björlingov problem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+\newtheorem{definicija}{Definicija}
+\newtheorem{lema}{Lema}
+\newtheorem{dokaz}{Dokaz}
+\newtheorem{trditev}{Trditev}
+\newtheorem{izrek}{Izrek}
+\newtheorem{posledica}{Posledica}
+\newtheorem{primer}{Primer}
+
+
+% Še neke ostale stvari ...
+
+
+\begin{document}
+
+    \maketitle
+
+    \section{Definicija minimalne ploskve}
+
+        	Minimalno ploskev lahko definiramo na osem različnih, a med sabo ekvavilentnih načinov.
+        	Lokalno definicijo minimalne ploskve lahko zapišemo na sledeč način.
+        	
+        	\begin{definicija}
+        	    Ploskev $M \subset \mathbb{R}^3$ je \emph{minimalna ploskev}, če in samo če obstaja okolica vsake točke $p \in M$, omejena s 
+        	    sklenjeno krivuljo, ki ima najmanjšo površino med vsemi ploskvami z isto omejitvijo.
+        	\end{definicija}
+        	
+        	
+        	Intuitivno je minimalna ploskev takšna ploskev, ki ima najmanjšo površino pri nekih robnih pogojih. 
+        	Pogosteje jih definiramo z uporabo srednje ukrivljenosti, saj jih na ta način podamo globalno.
+        	Zavoljo te definicije spoznajmo nekaj osnovnih pojmov vezanih na ploskve v splošnem.
+    	
+        	\begin{definicija}
+        	    \emph{Enotsko normalo $N$} regularne ploskve s parametrizacijo $\phi(u, v)$ definiramo kot vektor $N = \frac{\phi_u \times \phi_v}{\left\lvert \phi_u \times \phi_v \right\rvert }$.
+        	\end{definicija}
+    	
+        	\begin{definicija}
+        	    \emph{Normalna ukrivljenost $\kappa_n$} je komponenta ukrivljenosti $\kappa$ ploskovne krivulje $\gamma$ v smeri normale
+        	    $$ \kappa_n = \frac{dT}{dS} \cdot N. $$
+        	\end{definicija}
+    	
+        	\begin{definicija}
+        	    Naj bo $p$ točka na ploskvi. Poglejmo vse krivulje $\gamma_i$ na ploskvi, ki gredo skozi točko $p$. Naj bo $\kappa_1$ maksimalna izmed normalnih ukrivljenosti
+        	    teh krivulj v točki $p$, $\kappa_2$ pa minimalna. 
+        	    \emph{Srednja ukrivljenost H} je definirana kot $H = \frac{ \kappa_1 + \kappa_2 }{2}$.
+        	\end{definicija}
+        	
+        	Sedaj lahko globalno definiramo minimalno ploskev.
+        	
+        	\begin{definicija}
+        	    Ploskev se imenuje \emph{minimalna ploskev}, če je njena srednja ukrivljenost enaka nič.
+        	\end{definicija}
+
+
+    \section{Björlingov problem}
+
+        Danes bi na predstavitvi rada opisala drugi del svojega diplomskega dela, torej Björlingov problem.
+
+        Marsikdo je verjetno že slišal za Plateaujev problem minimalne ploskve, ki zahteva, da najdemo minimalno
+        ploskev s predpisanim robom. Pogoj, da je krivulja rob ploskve je precej omejujoč. Nekoliko splošnejši problem bi bil,
+        da zahtevamo, da ploskev vsebuje neko krivuljo. Tako pridem do Björlingovega problema.
+
+        Recimo, da je $\alpha (t) : I \mapsto \R^3$ realno analitična krivulja in $\eta : I \mapsto \R^3$ 
+        realno analitično vektorsko polje, da velja $ \left\lvert \eta \right\rvert = 1$ in $\eta (t) \cdot \alpha' (t) = 0$ 
+        za vse točke $t$ iz intervala $I$. Drugi pogoj pove, da je $\eta$ pravokoten na vse tangentne vektorje krivulje $\alpha$.
+
+        Björlingov problem zahteva, da najdemo takšno parametrizacijo $\phi (u, v)$ minimalne ploskve $M$, za katero velja:
+        \begin{enumerate}
+            \item Ploskev $M$ naj vsebuje krivuljo $\alpha$ pri $v = 0$. Tj. $\forall u \in I. \alpha (u) = \phi (u, 0)$
+            \item Normale na ploskev $M$ se naj vzdolž celotne krivulje $\alpha$ ujemajo z vektorji vektorskega polja $\eta$ 
+            Tj. $\forall u \in I. \eta (u) = \mathcal{N} (u, 0)$
+        \end{enumerate}
+
+        Izkaže se, da je rešitev Björlingovega problema ena sama in jo lahko zapišemo eksplicitno:
+        $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+
+        Da je dana ploskev res rešitev zadanega problema je leta 1890 dokazal Schwarz v dveh korakih. Dokazal je enoličnost
+        in obstoj rešitve. Namesto da bi danes na predstavitvi dokazovala kar je dokazal Schwarz, bi raje izpeljala nekaj posledic 
+        in konstruirala kakšno minimialno ploskev s pomočjo rešitve.
+
+
+    \section{Dodatki za dokaz rešitve}
+
+        \subsection{Princip identičnosti}
+
+            Za dokaz rešitve problema, pa tudi za dokaz posledic pa potrebujemo nekaj znanja iz kompleksne analize, 
+            specifično je dobro poznati princip identičnosti, ki pravi naslednje:
+
+            \begin{izrek}{(Princip identičnossti)}
+                Naj bosta $f$ in $g$ holomorfni funkciji na povezanem odprtem območju $D \subseteq \mathbb{C}$ (ali $\mathbb{R}$).
+                Če ima $S \subseteq D$ stekališče, potem je $f = g$ na $D$.
+            \end{izrek}
+
+
+        \subsection{Izotermna parametrizacija}
+
+            Naj bo zdaj $\gamma$ krivulja z enotsko hitrostjo, to pomeni, da je $\left\lvert \gamma' \right\rvert = 1$ povsod na njenem definicijskem območju.
+            Potem je $\gamma' \cdot \gamma' = 1$.
+            Navedeno lahko razpišemo:
+            
+            \begin{align*}
+                1 &= \gamma' \cdot \gamma' \\
+                &= (u' \phi_u + v' \phi_v) \cdot (u' \phi_u + v' \phi_v)\\
+                &= (\phi_u \cdot \phi_u) u'^2 + (\phi_u \cdot \phi_v + \phi_v \cdot \phi_u) u' v' + (\phi_v \cdot \phi_v) v'^2  \\
+                &= I(\phi_u) u'^2 + 2 I(\phi_u, \phi_v) u' v' + I(\phi_v) v'^2\\
+                &= E u'^2 + 2F u' v' + G v'^2\\
+            \end{align*}
+
+            Označili smo:
+            \begin{align*}
+                E &= I(\phi_u) = \phi_u \cdot \phi_u = \left\lvert \phi_u \right\rvert^2 \\
+                F &= I(\phi_u, \phi_v) = \phi_u \cdot \phi_v \\
+                G &= I(\phi_v) = \phi_v \cdot \phi_v = \left\lvert \phi_v \right\rvert^2
+            \end{align*}
+
+            Koeficienti $E, F \text{ in } G$ se imenujejo \emph{koeficienti prve fundamentalne forme $I$}.
+
+
+            
+            \begin{definicija}
+                Parametrizacije ploskve $phi$ je \emph{izotermna}, če velja $$ E = \phi_u \cdot \phi_u = \phi_v 
+                \cdot \phi_v = G \qquad \text{ in } \qquad F = \phi_u \cdot \phi_v = 0 $$ 
+            \end{definicija}
+
+            Omenimo tukaj, da ima vsaka minimalna ploskev izotermne koordinate. Dokaz opuščam.
+
+            Prav tako pa potrebujemo naslednjo lemo.
+
+            \begin{lema}
+                $\phi$ ima izotermne koordinate natanko tedaj, ko velja $(\phi')^2 = 0$.
+            \end{lema}
+
+            \begin{dokaz}
+                Naj bo $\phi$ izotermna parametrizacija. Potem je $\left( \phi_z \right)^2 = \frac{1}{4} \left( E - G - 2i F \right) 
+                = \frac{1}{4} \left( E - E - 2i \cdot 0 \right) = 0$
+            
+                Obratno, naj bo $\left( \phi_z \right)^2 = 0$. Potem je $\frac{1}{4} \left( E - G - 2i F \right) = \frac{E}{4} - \frac{G}{4} - i \frac{F}{2} = 0 + i \cdot 0$.
+                Dobimo sistem dveh enačb $\frac{E}{4} - \frac{G}{4} = 0$ in $\frac{F}{2} = 0$ iz česar seveda sledi $E = G$ in $F = 0$. Tako je naša lema dokazana.
+            \end{dokaz}
+
+
+    
+    \section{Dokaz rešitve Björlingovega problema}
+
+        Rešitev bomo dokazali v dveh korakih. Najprej bomo privzeli, da je $\phi$ parametrizacija rešitve in pokazali,
+        da je takšna kot v izreku. Iz tega bo sledilo, da je vsaka rešitev Björlingovega problema takšne oblike 
+        kot smo jo navedli in je torej enolična. Nato bomo še pokazali, da rešitvena parametrizacija zadošča 
+        obema pogojema Björlingovega problema, kar pa pomeni, da res obstaja.
+
+
+        \begin{dokaz}
+            Recimo, da je $\phi$ rešitev Björlingovega problema.
+            $\phi$ torej parametrizira minimalno ploskev $M$.
+            Ker za vsako minimalno ploskev obstaja izotermna parametrizacija, predpostavimo, da je $\phi$ izotermna.
+            Po prejšnji lemi je $\phi$ harmonična: $\Delta \phi = 0$.
+        
+            Naj bo $\varphi^{j}$ harmonična konjungiranka $\phi^{j}$ tako, da je $\phi^{i} + i \varphi^{i}$ holomorfna.
+            Definirajmo holomorfno funkcijo
+            \begin{align*}
+                & \beta (z) : D \mapsto \C^3 \\
+                & \beta (z) = \phi (z) + i \varphi (z) = \left[
+                \begin{matrix}
+                    \phi^{1} \\
+                    \phi^{2} \\
+                    \phi^{3} \\
+                \end{matrix} \right]
+                + i \left[
+                \begin{matrix}
+                    \varphi^{1} \\
+                    \varphi^{2} \\
+                    \varphi^{3} \\
+                \end{matrix} \right].
+            \end{align*}
+        
+            $\phi$ in $\varphi$ sta funkciji v realnih spremenljivkah $u$ in $v$, zato lahko tudi $\beta$ odvajamo po $u$ in $v$.
+            Odvod $\beta$ po $u$ je $\frac{\delta}{\delta u} \beta(z) = \frac{\delta}{\delta u} (\phi + i \varphi) = \phi_u + i \varphi_u$.
+            Ker je $\beta$ holomorfna, ustreza Cauchy-Riemannovim pogojem, zato lahko odvod zapišemo kot $\frac{\delta}{\delta u} \beta(z) = \phi_u - i \phi_v$.
+        
+            Predpostavili smo, da je $phi$ izotermna. Po definiciji izotermnosti velja, da sta si vektorja hitrosti $\phi_u$ in $\phi_v$
+            pravokotna. Normala $N$ na ploskev pa je pravokotna na oba vektorja hitrosti, zato je $\phi_v = N \times \phi_u$.
+        
+            Sledi $\beta'(z) = \phi_u(z) - i \cdot \left( N(z) \times \phi_u(z) \right)$.
+            Če se sedaj omejimo le na realne vrednosti $z$, dobimo 
+            $$\beta'(u) = \alpha'(u) - i \cdot \left( \mathcal{N} (u) \times \alpha'(u) \right)$$
+            za $u \in I$, kjer je $I$ kot v pogojih Björlingovega problema. Enakost velja, ker je $\phi(u, 0) = \alpha(u)$ in $N(u, 0) = \mathcal{N} (u)$.
+        
+            Izraz lahko integriramo po realni spremenljivki $u$ in dobimo:
+            $$\beta(u) = \alpha(u) - i \cdot \int_{u_0}^{u} \mathcal{N} (t) \times \alpha'(t) dt$$.
+        
+            Recimo sedaj, da je $\gamma(z) = \alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw$ holomorfna krivlulja.
+            Opazimo, da je ta vsak $u \in I, \beta(u) = \gamma(u + i \cdot 0)$. Zato po izreku identitete velja $\beta(z) = \gamma(z)$ za vsak $z \in D$.
+
+            Realni del funkcije $\beta$ je ravno parametrizacija $\phi = Re(\phi + i \cdot \varphi)$. Torej je 
+            $$ \phi(u, v) = Re(\beta(z)) = Re(\alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw)$$,
+            kar je pa ravno rešitev problema.
+        
+            Dokazali smo, da če $\phi$ parametrizira ploskev in zadošča pogojem problema, potem je ravno takšne oblike kot je 
+            navedeno v rešitvi. To pomeni, da je rešitev enolična.
+        
+            Za dokaz obstoja, naj bo $\beta(z)$ holomorna funkcija definirana kot 
+            \begin{align*}
+                \beta (z) &= \phi(z) + i \cdot \varphi(z) \\
+                &= \alpha(z) - i \cdot \int_{u_0}^{z} \mathcal{N} (w) \times \alpha'(w) dw
+            \end{align*}
+        
+            Naj bo $u \in I$. Vemo, da sta $\alpha'(u)$ in $\mathcal{N} (u)$ realni. Omejimo sedaj funkcijo $\beta$ na $u$. 
+            \begin{align*}
+                &\beta(u) = \alpha(u) - i \cdot \int_{u_0}^{u} \mathcal{N} (t) \times \alpha'(t) dt \\
+                \Rightarrow \qquad &\beta'(u) = \alpha'(u) - i \cdot \left( \mathcal{N} (u) \times \alpha'(u) \right)
+            \end{align*}
+        
+            Vemo, da je $\mathcal{N} \times \alpha' \bot \alpha'$, zato je $\left( \mathcal{N} \times \alpha' \right) \cdot \alpha'$.
+        
+            Prav tako vemo, da je $\mathcal{N} \bot \alpha'$, zato velja $|\mathcal{N} \times \alpha'| = |\mathcal{N}| \cdot |\alpha'| = |\alpha'|$.
+        
+            Izračunajmo:
+            \begin{align*}
+                \beta'(u)^2 &= \left( \alpha'(u) - i \cdot \left( \mathcal{N} (u) \times \alpha'(u) \right) \right)^2 
+                &= \alpha'(u) \cdot \alpha'(u) - 2i \alpha'(u) \cdot (\mathcal{N} \times \alpha'(u)) - (\mathcal{N} \times \alpha'(u)) \cdot (\mathcal{N} \times \alpha'(u))
+                &= |\alpha'(u)|^2 - 0 - |\mathcal{N} \times \alpha'(u)|^2
+                &= |\alpha'(u)|^2 - |\alpha'(u)|^2
+                &= 0
+            \end{align*}
+        
+            Po izreku identitete iz $\beta'(u)^2 = 0$ za $\forall u \in I$ sledi $\beta'(u)^2 = 0$ za $\forall u \in D$.
+            To pa je ravno pogoj za obstoj izotermnih koordinat po prejšnji lemi.
+            Torej realni del funkcije $\beta$ parametrizira minimalno ploskev $M$ v izotermnih koordinatah.
+            Tako smo dokazali obstoj izotermne parametrizacije ploskve, ki reši Björlingov problem.
+        \end{dokaz} 
+
+
+    
+    \section{Geodetka in primer Björlingovega problema}
+
+        Predpostavimo sedaj, da imamo naravno parametrizacijo krivulje $\alpha(s)$, ki ima enotski tangentni vektor $T = \alpha'(s)$.
+        Naj bo $N = \frac{T'}{| T' |} = \frac{\alpha''}{| \alpha |}$ njena enotska normala in $B = T \times N$ njena stranska normala.
+        Preprost primer pogojev Björlingovega problema je, da za krivuljo vzamemo kar $\alpha$, za vektorsko polje $\eta$ pa izberemo $\eta = N$.
+        Zanima nas kako izgleda parametrizacija minimalne ploskve, ki reši problem.
+
+        Vemo, da lahko splošno rešitev problema zapišemo kot:
+        $$ \phi (u, v) = Re \left( \alpha (z) - i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right) $$
+        Oglejmo si kako lahko razpišemo izraz pod integralom, saj imamo pogoj $\eta = N$.
+        $$ \eta \times \alpha' = N \times \alpha' (w) = - \alpha' (w) \times N = - | \alpha' (w) | (T \times N) = - | \alpha' (w) | B $$ 
+        Pri danih pogojih se rešitev Björlingovega problema glasi
+        $$ \phi (u, v) = Re \left( \alpha (z) + i \int_{z_0}^{z} B | \alpha' (w) | dw \right) $$
+
+        Pogoj $\eta = N$ ni vzet iz zraka, ampak je povezan z naslednjo definicijo krivulje.
+
+        \begin{definicija}
+            Krivulja na ploskvi parametrizirana z naravno parametrizacijo je \emph{geodetka}, če je njen drugi odvod 
+            povsod vzdolž krivulje vzporeden z enotsko normalo na ploskev. 
+        \end{definicija}
+
+        Ker je smer drugega odvoda ravno smer enotske normale $N$ po definiciji $N$, je v primeru, ko izberemo $\eta = N$,
+        izbrana krivulja geodetka na ploskvi, ki zadostuje pogojem Björlingovega problema.
+
+        Poglejmo si še primer, ko za vektorsko polje izberemo $\eta = - N(t)$
+
+        \begin{posledica}
+            Naj bo $\phi (u, v)$ rešitev Björlingovega problema za krivuljo $\alpha (t)$ in vektorsko polje $N (t)$.
+            Potem je rešitev Björlingovega problema za krivuljo $\alpha (t)$ in vektorsko polje $- N (t)$ parametrizirana z
+            \begin{align*}
+                \tilde{\phi} (u, v) &= Re \left[ \alpha(z) + i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right] \\
+                &= \phi (u, - v)
+            \end{align*}
+        \end{posledica}
+
+        \begin{dokaz}
+            Naj bo $D$ domena, kjer je rešitev $\phi (u, v)$ definirana. Prezrcalimo $D$ čez $u$-os in dobimo domeno $\tilde{D}$,
+            na kateri definiramo $\tilde{\phi} (u, v) = \phi (u, - v)$.
+            Ker ploskev $\tilde{\phi} (u, v)$ dobimo z zrcaljenjem, je tudi minimalna, njene normale pa definira zveza 
+            $\tilde{\mathcal{N}} (u, v) = - \mathcal{N} (u, -v)$. Ploskev $\tilde{\phi} (u, v)$ je rešitev Björlingovega problema
+            za vektorsko polje $- N(t)$.
+            Ker je rešitev enolična, je 
+            $$ \tilde{\phi} (u, v) = Re \left[ \alpha(z) + i \int_{z_0}^{z} \eta (w) \times \alpha' (w) dw \right] $$
+        \end{dokaz}
+
+        S posledico zgoraj smo rešitev definirano na $D$ razširili na $\tilde{D}$. Za $u \in I$ imajo $N(u)$, $\alpha' (u)$ in $z = u$
+        realne vrednosti, zato je $\tilde{\phi} (u, 0) = \alpha (u) = \phi (u, 0)$. Ker sta $D$ in $\tilde{D}$ odprti množici, ki vsebujeta
+        $I$, se ujemata na neki odprti množici. Po izreku identitete velja, da sta $\phi (u, v)$ in $\tilde{\phi}$ parametrizaciji iste 
+        ploskve kjer se $D$ in $\tilde{D}$ ujemata.
+
+
+    \section{Schwarzov izrek}
+
+        V dokazu naslednje leme privzemamo, da vektorsko polje $\eta$ zadošča pogojem Björlingovega problema.
+
+        \begin{lema}
+            Naj bo $\phi (u, v)$ parametrizacija minimalne ploskve $M$ in naj bo $\phi (u, 0)$ krivulja v $xy$-ravnini.
+            Če je ploskev $M$ pravokotna na $xy$-ravnino vzdolž $\phi (u, 0)$, veljajo naslednje zveze:
+            \begin{align*}
+                \phi^{1} (u, - v) &= \phi^{1} (u, v) \\
+                \phi^{2} (u, - v) &= \phi^{2} (u, v) \\
+                \phi^{3} (u, - v) &= - \phi^{3} (u, v) \\ 
+            \end{align*}
+        \end{lema}
+
+        \begin{dokaz}
+            Vzemimo za $\alpha(u)$ kar $\phi (u, 0)$ in naj bo vektorsko polje $\eta (u) = \mathcal{N} (u, 0)$ enotski normalni 
+            vektor na ploskev $M$ vzdolž krivulje $\alpha$. Sedaj si lahko pomagamo z rešitvijo Björlingovega problema.
+            $\alpha$ leži v $xy$-ravnini, zato jo lahko zapišemo kot $\alpha (u) = \left( \alpha^{1} (u), \alpha^{2} (u), 0 \right)$.
+            Vemo tudi, da ploskev $M$ seka $xy$-ravnino pravokotno, zato je njeno vektorsko polje normal
+            $\eta (u) = \mathcal{N} (u, 0) = \left( \eta^{1} (u), \eta^{2} (u), 0 \right)$.
+        
+            Del rešitve Björlingovega problema pod integralom lahko zato zapišemo:
+            $$ \eta (u) \times \alpha' (u) = \left( 0, 0, \eta^1 (u) (\alpha^2)' (u) - \eta^2 (u) (\alpha^1)' (u) \right) $$
+        
+            Po izreku identitete velja, da za holomorfne razširitve $\eta$ in $\alpha$ velja ista zveza, le da $u$ nadomestimo z $z$.
+            Prva in druga koordinata $\eta (z) \times \alpha' (z)$ sta ničelni, zato nam rešitev Björlingovega problema da 
+            $\phi^{1} (u, v) = Re \alpha^{1} (z)$ in $\phi^{2} (u, v) = Re \alpha^{2} (z)$. Z uporabo prejšnje posledice za $\alpha$
+            in $- \eta$ pa veljaza zvezi $\phi^{1} (u, - v) = Re \alpha^{1} (z)$ in $\phi^{2} (u, - v) = Re \alpha^{2} (z)$.
+            Tako smo dokazali prvi dve zvezi.
+        
+            Tretja koordinata $\alpha^{3} (z) = 0$, zato je $ \phi^{3} (u, v) = - Re \left( i \int \eta \times \alpha' dw \right) $.
+            S ponovno uporabo prejšnje posledice za $\alpha$ in $- \eta$ dobimo zvezo 
+            $ \phi^{3} (u, - v) = Re \left( i \int \eta \times \alpha' dw \right) = - \phi^{3} (u, v) $
+        \end{dokaz}
+
+
+        Podobno kot zgoraj, se da dokazati tudi naslednjo lemo.
+
+        \begin{lema}
+            Naj bo $\phi (u, v)$ parametrizacija minimalne ploskve $M$ in naj bo $\phi (u, 0)$ v celoti vsebovana v $x$-osi.
+            Potem veljajo naslednje zveze:
+            \begin{align*}
+                \phi^{1} (u, - v) &= \phi^{1} (u, v) \\
+                \phi^{2} (u, - v) &= - \phi^{2} (u, v) \\
+                \phi^{3} (u, - v) &= - \phi^{3} (u, v) \\ 
+            \end{align*}
+        \end{lema}
+
+
+        Zgornji lemi nam dasta rezultat, s katerim lahko ploskev razširimo v prostoru $\mathbb{R}^3$.
+
+        \begin{izrek}{Schwarzov izrek}
+            \begin{enumerate}
+                \item Minimalna ploskev je simetrična glede na vsako premico vsebovano v ploskvi.
+                \item Minimalna ploskev je simetrična glede na vsako ravnino, ki ploskev seka pravokotno.
+            \end{enumerate}
+        \end{izrek}
+
+
+        \begin{primer}
+            Scherkova prva ploskev, definirana z zvezo $$ z = c ln \left( \frac{cos(x/c)}{cos(y/c)} \right) $$
+            je definirana na $ -\pi / 2 < x / c < \pi / 2, -\pi / 2 < y / c < \pi / 2$. Ko se bližamo ogljiščem 
+            kvadrata, se približujemo nedefinirani vrednosti $0 / 0$.
+            V tem primeru si pomagamo s Schwarzovim izrekom simetrije. Scherkovo ploskev razširimo na diagonalno 
+            sosednji kvadrat kot na primer $ \pi / 2 < x / c < 3 \pi / 2, \pi / 2 < y / c < 3 \pi / 2$.
+        
+            V primeru Scherkove ploskve opazimo tudi, da je njen presek z $xy$-ravnino $y = \pm x$. To pa sta ravno 
+            simetrijski osi ploskve.
+        \end{primer}
+
+
+    \section{Konstrukcija minimalne ploskve}
+
+        Poglejmo si še eno konstrukcijo minimalne ploskve s pomočjo Björlingovega problema.
+
+
+        Dano imamo krivuljo v $xz$-ravnini $\alpha (u) = \left( \beta (u), 0, \gamma (u) \right)$ z vektorskim 
+        poljem enotskih normal $N (u)$. Poiskati želimo parametrizacijo ploskve, ki reši Björlingov problem.
+
+        Tangentni vektor na krivuljo je $\alpha' (u) = \left( \beta' (u), 0, \gamma' (u) \right)$. Če ga zarotiramo
+        v pozitivni smeri in normiramo, dobimo enotsko normalo 
+        $$N = \frac{ \left( - \gamma', 0, \beta' \right) }{ \sqrt{(\beta')^2 + (\gamma')^2 }} $$.
+
+        Izračunamo vektorski produkt $N \times \alpha' = \left( 0, \sqrt{(\beta')^2 + (\gamma')^2}, 0 \right)$. 
+        Potem je realni del $- i N \times \alpha'$ imaginarni del $N \times \alpha'$. Rešitev problema je torej:
+        $$ Re \left( \alpha - i \int N \times \alpha' \right) = \left( Re \beta, Im \int \sqrt{(\beta')^2 + (\gamma')^2}, Re \gamma \right)$$
+
+
+        Oglejmo si primer konstrukcije ploskve s pomočjo navedene izpeljave. V naslednjem primeru bomo poiskali
+        ploskev, ki vsebuje cikloido kot geodetko.
+
+        \begin{primer}{(Catalanova ploskev)}
+            Naj bo $\alpha (u) = \left( 1 - cos u , 0, u - sin u \right)$ cikloida.
+            Definirajmo kompleksno spremenljivko $z = u + i v$ in izračunamo
+            \begin{align*}
+                \phi^1 (u, v) &= Re (1 - cos z) = 1 - cos (u) cosh (v) \\
+                \phi^3 (u, v) &= Re (z - sin z) = u - sin (u) cosh (v)
+            \end{align*}
+            Sedaj imamo prvo in tretjo koordinato rešitve.
+            Nadalje izračunamo tangento na krivuljo $\alpha' = \left( sin z, 0, 1 - cos z \right)$. Potem je
+            \begin{align*}
+                sin^2 (w) + (1 - cos (w))^2 &= 2 - 2 cos(w) \\
+                &= 4 \frac{1 - cos (w)}{2} \\
+                &= 4 sin^2 (w/2)
+            \end{align*}
+            Druga koordinata je enaka
+            $$ Im \int \sqrt{sin^2 (w) + (1 - cos (w))^2} dw = Im \int 2 sin(w/2) dw = Im \left(- 4 cos(w/2) \right) = 4 sin(u/2) sinh(v/2)$$
+        
+            Parametrizacija Catalanove ploskve se glasi
+            $$\phi (u, v) = \left( 1 - cos (u) cosh (v), 4 sin(u/2) sinh(v/2), u - sin (u) cosh (v) \right)$$
+        \end{primer}
+
+
+\end{document}
